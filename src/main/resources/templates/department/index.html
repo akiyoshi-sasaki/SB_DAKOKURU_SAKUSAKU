@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+	<main layout:fragment="content">
+		<div class="prl-70">
+			<div class="success-message" th:if="${successMessage}"><span th:text="${successMessage}"></span></div>
+			<div class="error-message" th:if="${failureMessage}"><span th:text="${failureMessage}"></span></div>
+			<h2>部署一覧</h2>
+			<div>
+				<div class="flex-between w-800 mr-20">
+					<div class="flex">
+						<span class="mr-20">キーワード</span>
+						<form th:object="${departmentSearchForm}">
+							<input type="text" th:value="${searchTxt}" name="q" class="h-20 w-200" placeholder="検索した部署名を入力">
+							<span th:if="${#fields.hasErrors('q')}" th:errors="*{q}"></span>
+							<button type="submit" class="w-70 mrl-20" th:formaction="@{/department/search}">検索</button>
+							<button type="submit" class="w-70" th:formaction="@{/department/clear}">クリア</button>
+						</form>
+					</div>
+					<div><button class="w-120" th:onclick="|location.href='@{/department/create}'|">部署新規追加</button></div>
+				</div>
+				
+				<div class="prl-80">
+					<div th:if="${numberSearchResult > 0}"><p>検索結果<span class="ml-20" th:text="${numberSearchResult}"></span>件</p></div>
+					
+					<div class="mt-50">
+						<div th:each="department : ${departments}" class="flex flex-between w-300 mb-30">
+							<span th:text="${department.nameJp}" class="mr-20"></span>
+							<button class="w-70" th:onclick="|location.href='@{/department/edit/{departmentId}(departmentId = ${department.id})}'|">編集</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</html>

@@ -71,3 +71,81 @@ main {
 .error-message{
 	color: red;
 }
+
+/* 部署関連画面実装時に追加*/
+.flex {
+	display: flex;
+}
+.flex-between {
+	display: flex;
+	justify-content: space-between;
+}
+.w-70 {
+	width: 70px;
+}
+.w-100 {
+	width: 100px;
+}
+.w-110 {
+	width: 110px;
+}
+.w-120 {
+	width: 120px;
+}
+.w-200 {
+	width: 200px;
+}
+.w-300 {
+	width: 300px;
+}
+.w-500 {
+	width: 500px;
+}
+.w-650 {
+	width: 650px;
+}
+.w-800 {
+	width: 800px;
+}
+.w-1000 {
+	width: 1000px;
+}
+.h-20 {
+	height: 20px;
+}
+.m-auto {
+	margin: 0 auto;
+}
+.mt-30 {
+	margin-top: 30px;
+}
+.mt-50 {
+	margin-top: 50px;
+}
+.mr-20 {
+	margin-right: 20px;
+}
+.mrl-20 {
+	margin: 0 20px;
+}
+.mb-30 {
+	margin-bottom: 30px;
+}
+.ml-20 {
+	margin-left: 20px;
+}
+.prl-70 {
+	padding: 0 70px;
+}
+.prl-80 {
+	padding: 0 80px;
+}
+.d-b {
+	display: block;
+}
+.cl-r{
+	color: red;
+}
+.success-message {
+	color: #00adff;
+}

@@ -14,7 +14,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
             </div>
             <nav id=navigation>
                 <ul>
-                    <li class="current-item"><a th:href="@{/user/index}">【管理】ユーザー一覧</a></li>
+                    <li><a th:href="@{/user/index}">【管理】ユーザー一覧</a></li>
                     <li><a th:href="@{/users_daily_timestamps/{period}(period=${#dates.format(#dates.createNow(), 'yyyy-MM')})}">【管理】打刻集計</a></li>
                     <li><a th:href="@{/department/index}">【管理】部署一覧</a></li>
                     <li><a th:href="@{/workPlace/index}">【管理】勤務地一覧</a></li>
@@ -35,7 +35,17 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	    $(function(){
 	        let $nav = $("#navigation"),
 	            $slideLine = $("#slide-line"),
-	            $currentItem = $(".current-item");
+	            $pathname = location.pathname,
+	            $currentPath = $pathname.substr(0, $pathname.indexOf('/', 1));
+	        
+	        $('#navigation ul li').each(function(i, elem) {
+				var $href = $(elem).children().attr('href');
+				
+				if ($href.indexOf($currentPath) > -1) {
+					$(elem).addClass('current-item');
+				}
+			});
+			let $currentItem = $(".current-item");
 
 	        // メニューにアクティブな項目がある場合
 	        if ($currentItem.length) {

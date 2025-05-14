@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+	<main layout:fragment="content">
+		<div class="prl-70">
+			<div th:if="${successMessage}"><span th:text="${successMessage}"></span></div>
+			<div th:if="${failureMessage}"><span th:text="${failureMessage}"></span></div>
+			<h2>部署編集・削除</h2>
+			<div>
+				<div>
+					<form th:method="put" id="updateForm" th:object="${departmentForm}">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+						<div class="flex">
+							<span class="w-110 mr-20">変更前</span>
+							<div class="flex-between w-500">
+								<input type="text" class="w-200" th:value="${department.nameJp}" readonly>
+								<input type="text" class="w-200" th:value="${department.nameEn}" readonly>
+							</div>
+							
+						</div>
+						<div class="flex mt-30">
+							<span class="w-110 mr-20">変更後</span>
+							<input type="text" class="w-500" name="nameJp" th:value="${nameJp}">
+							<span class="ml-20 cl-r" th:if="${#fields.hasErrors('nameJp')}" th:errors="*{nameJp}"></span>
+						</div>
+						<div class="flex mt-30">
+							<span class="w-110 mr-20">変更後（英語）</span>
+							<input type="text" class="w-500" name="nameEn" th:value="${nameEn}">
+							<span class="ml-20 cl-r" th:if="${#fields.hasErrors('nameEn')}" th:errors="*{nameEn}"></span>
+						</div>
+					</form>
+					<form th:method="delete" id="deleteForm">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					</form>
+					<div class="w-650 m-auto mt-50">
+						<button type="submit" class="w-120" form="updateForm"
+							th:formaction="@{/department/update/{departmentId}(departmentId = ${department.id})}"
+							onclick="return confirm('更新します。よろしいですか？')">変更
+						</button>
+						<button type="submit" class="w-120" form="deleteForm"
+							th:formaction="@{/department/delete/{departmentId}(departmentId = ${department.id})}"
+							onclick="return confirm('削除します。よろしいですか？')">削除
+						</button>
+					</div>
+					<div class="w-500 m-auto mt-30">
+						<a th:href="@{/department/index}">部署一覧へ戻る</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</html>
